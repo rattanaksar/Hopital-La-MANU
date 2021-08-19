@@ -13,4 +13,3 @@ if (isset($_GET['del'])) {
 }
 $appointments = new appointments();
 $appointmentsList = $appointments->getAppointmentsList();
-?>

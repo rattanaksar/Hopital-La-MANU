@@ -8,9 +8,11 @@ include 'header.php';
             <div class="divList">
                 <br>
                 <h1>Liste des rendez-vous</h1>
+                <a href="ajout-rendezvous.php" class="btn btn-outline-primary float-end" style="margin-bottom:0.2em"><i>Ajouter un rendez-vous</i></a><br>
                 <table table-bordered="1" class="table table-rdv">
                     <thead>
                         <tr> 
+                            <th>Nom du patient</th>
                             <th>Date du rendez-vous</th>
                             <th>Heure du rendez-vous</th>
                             <th>Modifier le rendez-vous</th>
@@ -20,6 +22,7 @@ include 'header.php';
                     <tbody>
                         <?php foreach ($appointmentsList as $appointments) { ?>
                             <tr>
+                                <td><?= $appointments->lastname; ?></td>
                                 <td><?= $appointments->date; ?></td>
                                 <td><?= $appointments->hour; ?></td>
                                 <td><a href="rendezvous.php?appointmentId=<?= $appointments->id ?>" class="btn btn-outline-secondary"><i>Modifier</i></a></td>
@@ -27,9 +30,7 @@ include 'header.php';
                             </tr>
                         <?php } ?>
                     </tbody>
-                </table>
-                <a href="ajout-rendezvous.php" class="btn btn-outline-primary"><i>Ajouter un rendez-vous</i></a><br>
-                </a>
+                </table>               
             </div>
         </div>
     </div>

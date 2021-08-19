@@ -80,6 +80,10 @@ main {
                     <i class="fa fa-calendar fa-5x"></i><br/>
                     <p>Liste rendez-vous</p>
                 </a>
+                <a href="ajout-patient-rendez-vous.php" class="btn btn-light">
+                    <i class="fa fa-calendar fa-5x"></i><br/>
+                    <p>Ajout d'un patient et d'un rendez-vous</p>
+                </a>
             </div>
         </div>
     </div>  

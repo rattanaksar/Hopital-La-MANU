@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet" type='text/css'>         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./assets/style.css">
     </head>
     <body>
         <header>
@@ -24,6 +24,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
                         </button>
                         <a class="navbar-brand" class="logo" href="index.php">
                         <img src="assets/logo/logo.png" width="130" height="120">
@@ -38,6 +40,8 @@
                             <li class="nav-item"><a class="nav-link" href="liste-patients.php">Liste des patients</a></li>
                             <li class="nav-item"><a class="nav-link" href="ajout-rendezvous.php">Ajouter rendez-vous</a></li>
                             <li class="nav-item"><a class="nav-link" href="liste-rendezvous.php">Liste des rendez-vous</a></li>
+                            <li class="nav-item"><a class="nav-link" href="ajout-patient-rendez-vous.php">Ajouter un patient et un rendez-vous</a></li>
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

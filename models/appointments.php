@@ -20,7 +20,7 @@ class Appointments extends DataBase {
 
     public function getAppointmentsList() {
         $appointmentsResult = array();
-        $query = 'SELECT `id`, DATE_FORMAT(`dateHour`, "%d/%m/%Y") AS `date`, DATE_FORMAT(`dateHour`, "%H:%i") AS `hour`, `idPatients` FROM `appointments`';
+        $query = 'SELECT `appointments`.`id`, DATE_FORMAT(`dateHour`, "%d/%m/%Y") AS `date`, DATE_FORMAT(`dateHour`, "%H:%i") AS `hour`, `idPatients`, `lastname`,`firstname` FROM `appointments`LEFT JOIN `patients` ON `idPatients`= `patients`.`id`';
         $appointmentsResult = $this->pdo->query($query);
         if (is_object($appointmentsResult)) {
             $appointmentsList = $appointmentsResult->fetchAll(PDO::FETCH_OBJ);
@@ -51,7 +51,8 @@ class Appointments extends DataBase {
     public function updateAppointments() {
         $query = 'UPDATE `appointments` SET `dateHour` = :dateHour, `idPatients` = :idPatients WHERE id = :id';
         $appointmentsResult = $this->pdo->prepare($query);
-        $appointmentsResult->bindValue(':dateHour', $this->date, PDO::PARAM_STR);
+        $appointmentsResult->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
+
         $appointmentsResult->bindValue(':idPatients', $this->idPatients, PDO::PARAM_STR);
         $appointmentsResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         //Si l'insertion s'est correctement déroulée, on retourne vrai

@@ -14,7 +14,7 @@ include 'header.php';
                     <label for="name" class="cols-sm-2 control-label <?= isset($formError['lastname']) ? 'inputError' : '' ?>">Votre nom</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <span class="input-group-addon" style="padding:0.9em"><i class="fa fa-user fa" style="color:white" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="lastname" id="name"  placeholder="Entrer votre nom" value="<?= $patients->lastname ?>" />
                         </div>
                     </div>
@@ -23,7 +23,7 @@ include 'header.php';
                     <label for="name" class="cols-sm-2 control-label <?= isset($formError['firstname']) ? 'inputError' : '' ?>">Votre prénom</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <span class="input-group-addon" style="padding:0.9em"><i class="fa fa-user fa" style="color:white" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="firstname" id="name"  placeholder="Entrer votre prénom" value="<?= $patients->firstname ?>" />
                         </div>
                     </div>
@@ -32,7 +32,7 @@ include 'header.php';
                     <label for="email" class="cols-sm-2 control-label <?= isset($formError['birthdate']) ? 'inputError' : '' ?>">Votre date de naissance</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"style="padding:0.9em"><i class="fa fa-calendar" style="color:white" aria-hidden="true"></i></span>
                             <input type="date" class="form-control" name="birthdate" id="email"  placeholder="Entrer votre date de naissance" value="<?= $patients->birthdate ?>" />
                         </div>
                     </div>
@@ -41,7 +41,7 @@ include 'header.php';
                     <label for="username" class="cols-sm-2 control-label <?= isset($formError['phone']) ? 'inputError' : '' ?>">Votre numéro de téléphone</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"style="padding:0.9em"><i class="fa fa-phone" style="color:white" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="phone" id="username"  placeholder="Entrer votre numéro de téléphone" value="<?= $patients->phone ?>" />
                         </div>
                     </div>
@@ -50,7 +50,7 @@ include 'header.php';
                     <label for="password" class="cols-sm-2 control-label <?= isset($formError['mail']) ? 'inputError' : '' ?>">Votre adresse e-mail</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"style="padding:0.9em"><i class="fa fa-envelope fa" style="color:white" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="mail" id="password"  placeholder="Entrer votre adresse email" value="<?= $patients->mail ?>" />
                         </div>
                     </div>

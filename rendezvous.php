@@ -21,7 +21,7 @@ include 'header.php';
                             <form action="#" method="post">
                                 <div>
                                 <h2>Date du rendez-vous : </h2>
-                                <input type="date" name="date" min="<?= date('Y-m-d') ?>" max="2018-12-31" value="<?= $appointmentInfo->date ?>" />
+                                <input type="date" name="date" min="<?= date('Y-m-d') ?>" value="<?= $appointmentInfo->date ?>" />
                                 </div>
                                 <div>
                                 <h2>Heure du rendez-vous : </h2>
