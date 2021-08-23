@@ -1,13 +1,14 @@
 <?php
 
-class Appointments extends DataBase {
+class Appointments {
 
     public $id = 0;
     public $dateHour = '';
     public $idPatients = 0;
+    private $pdo = null;
 
     public function __construct() {
-        parent::__construct();
+        $this->pdo = DataBase::getPdo();
     }
 
     public function addAppointments() {

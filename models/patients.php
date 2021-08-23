@@ -1,6 +1,6 @@
 <?php
 
-class Patients extends DataBase {
+class Patients {
 
     public $id = 0;
     public $lastname = '';
@@ -8,10 +8,21 @@ class Patients extends DataBase {
     public $birthdate = '01/01/1900';
     public $phone = '';
     public $mail = '';
+    private $pdo = null;
 
     public function __construct() {
-        parent::__construct();
+        $this->pdo = DataBase::getPdo();
     }
+
+    public function checkPatientExist(){
+        $query = 'SELECT COUNT(*) AS `isExist` FROM `patients` WHERE `id` = :id';
+        $checkPatientExistRequest = $this->pdo->prepare($query);
+        $checkPatientExistRequest->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $checkPatientExistRequest->execute();
+        $result = $checkPatientExistRequest->fetch(PDO::FETCH_OBJ);// result = objet
+        return $result->isExist; 
+    }
+
     public function addPatient() {
         //On prépare la requête sql qui insert dans les champs selectionnés, les valeurs sont des marqueurs nominatifs
         $query = 'INSERT INTO `patients`(`lastname`, `firstname`, `birthdate`, `phone`, `mail`) VALUES(:lastname, :firstname, :birthdate, :phone, :mail)';
@@ -22,7 +33,8 @@ class Patients extends DataBase {
         $responseRequest->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $responseRequest->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         //Si l'insertion s'est correctement déroulée on retourne vrai
-        return $responseRequest->execute();
+        $responseRequest->execute();
+        return $this->pdo->lastInsertId();
     }
 
     public function getPatientsList() {
@@ -67,26 +79,11 @@ class Patients extends DataBase {
     }
 
     public function deletePatientById() {
-        //Permet d'attraper une erreur avec le catch.
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        try {
-            //On démarre la transaction, toujours mettre la table enfant avant la table parente pour éviter les soucis de suppression.
-            $this->pdo->beginTransaction();
-            $queryAppointment = 'DELETE FROM `appointments` WHERE `idPatients` = :idPatients';
-            $deleteAppointmentResult = $this->pdo->prepare($queryAppointment);
-            $deleteAppointmentResult->bindValue(':idPatients', $this->id, PDO::PARAM_INT);
-            $deleteAppointmentResult->execute();
             $queryPatient = 'DELETE FROM `patients` WHERE `id` = :id';
             $deletePatientResult = $this->pdo->prepare($queryPatient);
             $deletePatientResult->bindValue(':id', $this->id, PDO::PARAM_INT);
             $deletePatientResult->execute();
-            //On valide la transaction.
-            $this->pdo->commit();
-        } catch (Exception $ex) {
-            //Si une erreur survient, on annule les changements.
-            $this->pdo->rollBack();
-            echo 'Erreur : ' . $ex->getMessage();
-        }
+            return !$this->checkPatientExist();// Le point d'exclamation devant $this renvoie un false
     }
 
      public function searchPatients($search){
@@ -99,9 +96,36 @@ class Patients extends DataBase {
         }
         return $searchPatientResult;
     }
+    public function getCount() {
+        $query = 'SELECT COUNT(`id`) as nbPatients FROM  `patients`;';
+        $count = $this->pdo->prepare($query);
+        $count -> execute();
+        
+        $resultQuery = $count -> fetch(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+    public function pagination($startValue, $perPage) {
+        $query = 'SELECT * FROM `patients` LIMIT :perPage OFFSET :startValue;';
+        $pagination = $this->pdo-> prepare($query);
+
+        $pagination -> bindvalue('startValue', $startValue, PDO::PARAM_INT);
+        $pagination -> bindvalue('perPage', $perPage, PDO::PARAM_INT);
+        
+
+        $pagination -> execute();
+        $resultQuery = $pagination -> fetchAll(PDO::FETCH_OBJ);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
 
     public function __destruct() {
         
     }
 }
-?>
