@@ -8,6 +8,7 @@ include 'header.php';
             <div class="divList">
                 <br>
                 <h1>Liste des patients</h1>
+                <a href="ajout-patient.php" class="btn btn-outline-primary float-end" style="margin:0.2em"><i>Ajouter un patient</i></a>
                 <?php
                 if (!empty($success)) {
                     ?>
@@ -22,8 +23,8 @@ include 'header.php';
                 ?>
                 <form action="#" method="POST">
                         <label for="searchPatient"> Recherche </label>
-                        <input type="text" name="searchPatient" placeholder="Saisir un nom ou un prénom..."/>
-                        <input type="submit" name="submitSearch" value="Valider">
+                        <input type="search" name="search" placeholder="Saisir un nom ou un prénom..."value="<?= isset($q) ? $q :""?>"/>
+                        <input type="submit" value="Rechercher">
                 </form>
                 <?php
                         if(isset($_POST['searchPatient'])){
@@ -42,20 +43,45 @@ include 'header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($patientsList as $patients) { ?>
+                        <?php
+                            if (isset($search) && !empty($search) && !empty($q)) {
+                                foreach ($patientsList as $patients) { ?>
                             <tr>
                                 <td><?= $patients->lastname ?></td>
                                 <td><?= $patients->firstname ?></td>
                                 <td><a href="profil-patient.php?patientId=<?= $patients->id; ?>" class="btn btn-outline-secondary"><i>Voir la fiche du patient</i></a></td>
-                                <td><a id="delete-button" href="liste-patients.php?del=<?= $patients->id ?>" class="btn btn-outline-danger"><i>Supprimer</i></a></td>
+                                <td><a href="liste-patients.php?del=<?= $patients->id ?>" class="btn btn-outline-danger"><i>Supprimer</i></button></td>
                             </tr>
                         <?php } ?>
+                        <?php }?>
+                        <?php
+                            if (!isset($search) || empty($q)) {
+                            foreach ($patientPerPage as $patients) { ?>
+                            <tr>
+                                <td><?= $patients->lastname ?></td>
+                                <td><?= $patients->firstname ?></td>
+                                <td><a href="profil-patient.php?patientId=<?= $patients->id; ?>" class="btn btn-outline-secondary"><i>Voir la fiche du patient</i></a></td>
+                                <td><a href="liste-patients.php?del=<?= $patients->id ?>" class="btn btn-outline-danger"><i>Supprimer</i></button></td>
+                            </tr>
+                        <?php }
+                        } ?>
                     </tbody>
                 </table><?php } ?>
-                <a href="ajout-patient.php" class="btn btn-outline-primary"><i>Ajouter un patient</i></a>
                 </a>
             </div>
         </div>
     </div>
-</div>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a href="./?page=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                </li>
+                <?php for($page = 1; $page <= $nbPage; $page++): ?>
+                    <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                    <a href="liste-patients.php?page=<?= $page ?>"class="page-link"><?= $page ?></a>
+                    </li>
+                <?php endfor ?>
+            </ul>
+        </nav>
+</div>               
 <?php include 'footer.php'; ?>

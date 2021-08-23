@@ -11,7 +11,7 @@ include 'header.php';
                     <label for="name" class="cols-sm-2 control-label">Date du rendez-vous</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon" style="padding:0.9em"><i class="fa fa-calendar-o fa"  aria-hidden="true"></i></span>
+                            <span class="input-group-addon" style="padding:0.9em"><i class="fa fa-calendar-o fa"style="color:white" aria-hidden="true"></i></span>
                             <input type="date" class="form-control" name="date" id="name" />
                         </div>
                     </div>

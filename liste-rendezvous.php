@@ -13,6 +13,7 @@ include 'header.php';
                     <thead>
                         <tr> 
                             <th>Nom du patient</th>
+                            <th>Prénom du patient</th>
                             <th>Date du rendez-vous</th>
                             <th>Heure du rendez-vous</th>
                             <th>Modifier le rendez-vous</th>
@@ -23,10 +24,11 @@ include 'header.php';
                         <?php foreach ($appointmentsList as $appointments) { ?>
                             <tr>
                                 <td><?= $appointments->lastname; ?></td>
+                                <td><?= $appointments->firstname; ?></td>
                                 <td><?= $appointments->date; ?></td>
                                 <td><?= $appointments->hour; ?></td>
                                 <td><a href="rendezvous.php?appointmentId=<?= $appointments->id ?>" class="btn btn-outline-secondary"><i>Modifier</i></a></td>
-                                <td><a href="liste-rendezvous.php?del=<?= $appointments->id ?>" class="btn btn-outline-danger"><i>Supprimer</i></a></td>
+                                <td><a href="liste-rendezvous.php?del=<?= $appointments->id ?>" class="btn btn-outline-danger"><i>Supprimer</i></button></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>

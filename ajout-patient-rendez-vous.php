@@ -6,7 +6,9 @@ include 'header.php';
     <div class="divList">
         <div class="row main">
                 <h1>Ajouter patient & RDV</h1>
-
+                <?php foreach ($formError as $Error) { ?>
+                <p><?= $Error ?></p>
+                <?php } ?>
                 <form action="ajout-patient-rendez-vous.php" method="POST">
 
                     <div class="row">
@@ -83,9 +85,10 @@ include 'header.php';
                         <button type="submit" name="submit" class="btn btn-outline-primary">Enregistrer</button>
                     </div>
                 </form>
+                <p class="formValid">
                 <?php
                 if ($insertSuccess) {
-                    echo 'Votre profil a bien été enregistré';
+                    echo 'Votre rendez-vous a bien été enregistré';
                 }
                 ?>
         </div>

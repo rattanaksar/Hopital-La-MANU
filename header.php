@@ -25,7 +25,6 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-
                         </button>
                         <a class="navbar-brand" class="logo" href="index.php">
                         <img src="assets/logo/logo.png" width="130" height="120">
