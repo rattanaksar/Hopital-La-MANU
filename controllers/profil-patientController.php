@@ -56,4 +56,3 @@ if (isset($_GET['patientId'])) {
     $listAppointmentsPatient->idPatients = $patients->id;
     $listInfoAppointments = $listAppointmentsPatient->listAppointmentsByIdPatient();
 }
-?>

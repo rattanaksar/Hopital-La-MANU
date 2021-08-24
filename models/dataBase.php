@@ -13,6 +13,7 @@ class DataBase {
             $this->pdo = new PDO('mysql:host=localhost;dbname=hospitalE2N;charset=utf8', 'root', 'root');
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+
         } catch (PDOException $Exception) {
             die('Erreur : ' . $Exception->getMessage());
         }
@@ -25,7 +26,6 @@ class DataBase {
         }
         return self::$instance->pdo;
     }
-
     public function __destruct() {
 
         $this->pdo = null;

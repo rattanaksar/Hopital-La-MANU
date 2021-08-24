@@ -9,6 +9,7 @@ class Appointments {
 
     public function __construct() {
         $this->pdo = DataBase::getPdo();
+
     }
 
     public function addAppointments() {
@@ -76,6 +77,12 @@ class Appointments {
         $query = 'DELETE FROM `appointments` WHERE `id` = :id';
         $deleteResult = $this->pdo->prepare($query);
         $deleteResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $deleteResult->execute();
+    }
+    public function deleteAppointmentByPatientId() {
+        $query = 'DELETE FROM `appointments` WHERE `idPatients` = :idPatients';
+        $deleteResult = $this->pdo->prepare($query);
+        $deleteResult->bindValue(':idPatients', $this->idPatients, PDO::PARAM_INT);
         return $deleteResult->execute();
     }
     public function __destruct() {

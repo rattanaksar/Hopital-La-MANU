@@ -10,7 +10,7 @@ $regName = '#^[A-Z]{1}[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ
 $regBirthDate = '/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/';
 $regPhone = '#^0[1-9]((-[0-9]{2}){4}|(([0-9]{2})){4}|(\/[0-9]{2}){4}|(\\[0-9]{2}){4}|(_[0-9]{2}){4}|(\s[0-9]{2}){4})$#';
 $regMail = '#[A-Z-a-z-0-9-.éàèîÏôöùüûêëç]{2,}@[A-Z-a-z-0-9éèàêâùïüëç]{2,}[.][a-z]{2,6}$#';
-$insertSuccess = true;
+$insertSuccess = false;
 $formError = [];
 
 //début contrôle infomations saisies du patient
@@ -71,14 +71,16 @@ if (isset($_POST['submit'])) {
         $newPatient = $patients->addPatient($arrayParameter);
         $getId = $patients->getPdo()->lastInsertId();
         
-        $arrayParameter['dateHour'] = htmlspecialchars($_POST['date'] . " " . $_POST['hour']);
+        $arrayParameter['dateHour'] = htmlspecialchars($_POST['date'] . ' ' . $_POST['hour']);
         $arrayParameter['idPatients'] = $getId;
+        $appointments->idPatients = $getId;
+        $appointments->dateHour= htmlspecialchars($_POST['date'] . ' ' . $_POST['hour']);
 
-        $newAppointment = $appointments->addAppointments($arrayParameter);
+        $newAppointment = $appointments->addAppointments();
 
         $_POST = [];
 
     } else {
-    $insertSuccess = false;
+    $insertSuccess = true;
 }
 }

@@ -40,4 +40,3 @@ if (isset($_POST['submit'])) {
     }
 }
 $appointmentInfo = $appointments->getAppointmentById();
-?>

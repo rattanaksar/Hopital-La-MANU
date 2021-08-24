@@ -13,6 +13,16 @@ class Patients {
     public function __construct() {
         $this->pdo = DataBase::getPdo();
     }
+    public function beginTransaction(){
+        return $this->pdo->beginTransaction();
+    }
+    public function commit(){
+        return $this->pdo->commit();
+    }
+    public function rollBack(){
+        return $this->pdo->rollBack();
+    }
+
 
     public function checkPatientExist(){
         $query = 'SELECT COUNT(*) AS `isExist` FROM `patients` WHERE `id` = :id';
